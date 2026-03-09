@@ -1,6 +1,17 @@
+html, body {
+  height: 100%;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
+}
+
+main {
+  flex: 1;
 }
 
 .page-header {
@@ -13,7 +24,6 @@ body {
 }
 
 footer {
-  margin-top: 2rem;
   padding: 1rem 0;
   background-color: #e9ecef;
 }
