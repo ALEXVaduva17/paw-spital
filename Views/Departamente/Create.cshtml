@@ -1,36 +1,34 @@
 @model PawSpital.Models.Departament
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Adaugă Departament";
 }
 
-<h1>Create</h1>
-
-<h4>Departament</h4>
+<h1>Creează un Departament Nou (- Test Create -)</h1>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            
+            <div class="form-group mb-3">
                 <label asp-for="Nume" class="control-label"></label>
-                <input asp-for="Nume" class="form-control" />
+                <input asp-for="Nume" class="form-control" placeholder="Ex: Cardiologie, Pediatrie..." />
                 <span asp-validation-for="Nume" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            
+            <div class="form-group mb-3">
                 <label asp-for="Descriere" class="control-label"></label>
-                <input asp-for="Descriere" class="form-control" />
+                <textarea asp-for="Descriere" class="form-control" rows="3" placeholder="Scrie o scurtă descriere a departamentului"></textarea>
                 <span asp-validation-for="Descriere" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Salvează în DB (Create)" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-secondary ms-2">Înapoi la Listă</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

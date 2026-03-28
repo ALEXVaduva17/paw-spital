@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -15,10 +16,10 @@ namespace PawSpital.Migrations
                 name: "Departamente",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nume = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Descriere = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nume = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Descriere = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,11 +30,11 @@ namespace PawSpital.Migrations
                 name: "Servicii",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nume = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Pret = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Descriere = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nume = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Pret = table.Column<decimal>(type: "numeric", nullable: false),
+                    Descriere = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,11 +45,11 @@ namespace PawSpital.Migrations
                 name: "Doctori",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nume = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Specializare = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    DepartamentId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nume = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Specializare = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    DepartamentId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,14 +66,14 @@ namespace PawSpital.Migrations
                 name: "Programari",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NumePacient = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Telefon = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DoctorId = table.Column<int>(type: "int", nullable: false),
-                    ServiciuId = table.Column<int>(type: "int", nullable: false),
-                    Data = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    NumePacient = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Telefon = table.Column<string>(type: "text", nullable: false),
+                    DoctorId = table.Column<int>(type: "integer", nullable: false),
+                    ServiciuId = table.Column<int>(type: "integer", nullable: false),
+                    Data = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Status = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -95,12 +96,12 @@ namespace PawSpital.Migrations
                 name: "Recenzii",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NumePacient = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Rating = table.Column<int>(type: "int", nullable: false),
-                    Comentariu = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DoctorId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    NumePacient = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Rating = table.Column<int>(type: "integer", nullable: false),
+                    Comentariu = table.Column<string>(type: "text", nullable: false),
+                    DoctorId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {

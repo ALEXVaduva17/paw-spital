@@ -13,8 +13,8 @@ namespace PawSpital.Models
         [StringLength(100)]
         public string Nume { get; set; }
         
-        public string Descriere { get; set; }
+        public string? Descriere { get; set; }
         
-        public ICollection<Doctor> Doctori { get; set; }
+        public ICollection<Doctor>? Doctori { get; set; }
     }
 }

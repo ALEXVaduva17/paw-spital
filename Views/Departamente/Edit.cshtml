@@ -1,37 +1,36 @@
 @model PawSpital.Models.Departament
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Schimbă Datele";
 }
 
-<h1>Edit</h1>
-
-<h4>Departament</h4>
+<h1>Editează Departamentul "@Model.Nume" (- Test Update -)</h1>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!-- Trimitem ID-ul către controller în mod ascuns -->
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
+            
+            <div class="form-group mb-3">
                 <label asp-for="Nume" class="control-label"></label>
                 <input asp-for="Nume" class="form-control" />
                 <span asp-validation-for="Nume" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            
+            <div class="form-group mb-3">
                 <label asp-for="Descriere" class="control-label"></label>
-                <input asp-for="Descriere" class="form-control" />
+                <textarea asp-for="Descriere" class="form-control" rows="3"></textarea>
                 <span asp-validation-for="Descriere" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Salvează Modificările în DB" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary ms-2">Înapoi la Listă</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

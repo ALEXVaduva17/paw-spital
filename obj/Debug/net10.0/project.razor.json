@@ -1,0 +1,130 @@
+{
+  "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\PawSpital.csproj",
+  "Configuration": {
+    "ConfigurationName": "MVC-3.0",
+    "LanguageVersion": "6.0",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-3.0"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 1000
+  },
+  "RootNamespace": "PawSpital",
+  "Documents": [
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Home\\servicii.cshtml",
+      "TargetPath": "Views\\Home\\servicii.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Home\\departamente.cshtml",
+      "TargetPath": "Views\\Home\\departamente.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Home\\profil.cshtml",
+      "TargetPath": "Views\\Home\\profil.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Departamente\\Edit.cshtml",
+      "TargetPath": "Views\\Departamente\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Home\\contact.cshtml",
+      "TargetPath": "Views\\Home\\contact.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Departamente\\Index.cshtml",
+      "TargetPath": "Views\\Departamente\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Home\\despre.cshtml",
+      "TargetPath": "Views\\Home\\despre.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Home\\documentatie-aplicatie.cshtml",
+      "TargetPath": "Views\\Home\\documentatie-aplicatie.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Departamente\\Delete.cshtml",
+      "TargetPath": "Views\\Departamente\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Shared\\Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Departamente\\Details.cshtml",
+      "TargetPath": "Views\\Departamente\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Home\\index.cshtml",
+      "TargetPath": "Views\\Home\\index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Home\\register.cshtml",
+      "TargetPath": "Views\\Home\\register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Home\\programari.cshtml",
+      "TargetPath": "Views\\Home\\programari.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Home\\doctori.cshtml",
+      "TargetPath": "Views\\Home\\doctori.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Home\\Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Departamente\\Create.cshtml",
+      "TargetPath": "Views\\Departamente\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Home\\login.cshtml",
+      "TargetPath": "Views\\Home\\login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    }
+  ],
+  "SerializationFormat": "0.2"
+}
