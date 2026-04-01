@@ -27,7 +27,8 @@
             <td>@Html.DisplayFor(modelItem => item.Nume)</td>
             <td>@Html.DisplayFor(modelItem => item.Descriere)</td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Modifică (Update)</a> &nbsp;
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalii (Read)</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Modifică (Update)</a>
                 <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Șterge (Delete)</a>
             </td>
         </tr>

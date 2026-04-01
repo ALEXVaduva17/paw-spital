@@ -14,6 +14,7 @@ namespace PawSpital.Data
         public DbSet<Departament> Departamente { get; set; }
         public DbSet<Doctor> Doctori { get; set; }
         public DbSet<Serviciu> Servicii { get; set; }
+        public DbSet<Sala> Salii { get; set; }
         public DbSet<Programare> Programari { get; set; }
         public DbSet<Recenzie> Recenzii { get; set; }
     }

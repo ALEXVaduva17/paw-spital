@@ -23,6 +23,16 @@ namespace PawSpital.Controllers
             return View(list);
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var departament = await _context.Departamente.FirstOrDefaultAsync(m => m.Id == id);
+            if (departament == null) return NotFound();
+
+            return View(departament);
+        }
+
         // GET: CREATE (Form for new record)
         public IActionResult Create()
         {

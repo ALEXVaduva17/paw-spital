@@ -21,6 +21,9 @@ namespace PawSpital.Models
         
         public int ServiciuId { get; set; }
         public Serviciu Serviciu { get; set; }
+
+        public int? SalaId { get; set; }
+        public Sala? Sala { get; set; }
         
         [Required]
         public DateTime Data { get; set; }
