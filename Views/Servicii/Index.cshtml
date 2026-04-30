@@ -1,0 +1,46 @@
+@model IEnumerable<PawSpital.Models.Serviciu>
+
+@{
+    ViewData["Title"] = "Servicii";
+}
+
+<h1>Listă Servicii (- CRUD Bază de Date -)</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adaugă Serviciu Nou</a>
+</p>
+
+<table class="table table-striped table-hover mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Nume)</th>
+            <th>@Html.DisplayNameFor(model => model.Pret)</th>
+            <th>@Html.DisplayNameFor(model => model.Descriere)</th>
+            <th>Operațiuni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="4" class="text-center text-muted">
+                    Baza de date este goală. Apasă butonul de mai sus pentru a adăuga date.
+                </td>
+            </tr>
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(_ => item.Nume)</td>
+                <td>@item.Pret.ToString("0.00")</td>
+                <td>@Html.DisplayFor(_ => item.Descriere)</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalii</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Modifică</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Șterge</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

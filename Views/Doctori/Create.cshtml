@@ -1,0 +1,46 @@
+@model PawSpital.Models.Doctor
+
+@{
+    ViewData["Title"] = "Adaugă Doctor";
+}
+
+<h1>Creează un Doctor Nou</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Nume" class="control-label"></label>
+                <input asp-for="Nume" class="form-control" placeholder="Ex: Dr. Popescu Andrei" />
+                <span asp-validation-for="Nume" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Specializare" class="control-label"></label>
+                <input asp-for="Specializare" class="form-control" placeholder="Ex: Cardiologie" />
+                <span asp-validation-for="Specializare" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="DepartamentId" class="control-label">Departament</label>
+                <select asp-for="DepartamentId" class="form-select" asp-items="ViewBag.DepartamentId">
+                    <option value="">-- alege departamentul --</option>
+                </select>
+                <span asp-validation-for="DepartamentId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvează în DB" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-secondary ms-2">Înapoi la Listă</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

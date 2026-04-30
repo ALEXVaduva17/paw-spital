@@ -1,0 +1,45 @@
+@model PawSpital.Models.Serviciu
+
+@{
+    ViewData["Title"] = "Editare Serviciu";
+}
+
+<h1>Editează Serviciu</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group mb-3">
+                <label asp-for="Nume" class="control-label"></label>
+                <input asp-for="Nume" class="form-control" />
+                <span asp-validation-for="Nume" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Pret" class="control-label"></label>
+                <input asp-for="Pret" class="form-control" step="0.01" />
+                <span asp-validation-for="Pret" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Descriere" class="control-label"></label>
+                <textarea asp-for="Descriere" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Descriere" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvează modificările" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-secondary ms-2">Înapoi la Listă</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

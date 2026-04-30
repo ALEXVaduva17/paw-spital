@@ -1,0 +1,27 @@
+@model PawSpital.Models.Serviciu
+
+@{
+    ViewData["Title"] = "Șterge Serviciu";
+}
+
+<h1>Șterge Serviciu</h1>
+<p class="text-danger">Ești sigur că vrei să ștergi acest serviciu?</p>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Nume)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(m => m.Nume)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Pret)</dt>
+    <dd class="col-sm-9">@Model.Pret.ToString("0.00")</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Descriere)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(m => m.Descriere)</dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Confirmă ștergerea</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Renunță</a>
+</form>
+

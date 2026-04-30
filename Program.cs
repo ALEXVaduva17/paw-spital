@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PawSpital.Data;
+using PawSpital.Repositories;
+using PawSpital.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,16 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<SpitalContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Repositories (Repository Pattern)
+builder.Services.AddScoped<IDepartamentRepository, DepartamentRepository>();
+builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+builder.Services.AddScoped<IServiciuRepository, ServiciuRepository>();
+
+// Business logic services (one per entity)
+builder.Services.AddScoped<IDepartamentService, DepartamentService>();
+builder.Services.AddScoped<IDoctorService, DoctorService>();
+builder.Services.AddScoped<IServiciuService, ServiciuService>();
 
 var app = builder.Build();
 

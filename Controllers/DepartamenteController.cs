@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PawSpital.Data;
 using PawSpital.Models;
+using PawSpital.Services;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,17 +8,17 @@ namespace PawSpital.Controllers
 {
     public class DepartamenteController : Controller
     {
-        private readonly SpitalContext _context;
+        private readonly IDepartamentService _service;
 
-        public DepartamenteController(SpitalContext context)
+        public DepartamenteController(IDepartamentService service)
         {
-            _context = context;
+            _service = service;
         }
 
         // READ ALL (Get all records)
         public async Task<IActionResult> Index()
         {
-            var list = await _context.Departamente.ToListAsync();
+            var list = await _service.GetAllAsync();
             return View(list);
         }
 
@@ -27,7 +26,7 @@ namespace PawSpital.Controllers
         {
             if (id == null) return NotFound();
 
-            var departament = await _context.Departamente.FirstOrDefaultAsync(m => m.Id == id);
+            var departament = await _service.GetByIdAsync(id.Value);
             if (departament == null) return NotFound();
 
             return View(departament);
@@ -46,8 +45,7 @@ namespace PawSpital.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(model);
-                await _context.SaveChangesAsync();
+                await _service.CreateAsync(model);
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
@@ -58,7 +56,7 @@ namespace PawSpital.Controllers
         {
             if (id == null) return NotFound();
 
-            var departament = await _context.Departamente.FindAsync(id);
+            var departament = await _service.GetByIdAsync(id.Value);
             if (departament == null) return NotFound();
 
             return View(departament);
@@ -73,16 +71,8 @@ namespace PawSpital.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(model);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DepartamentExists(model.Id)) return NotFound();
-                    else throw;
-                }
+                var updated = await _service.UpdateAsync(model);
+                if (!updated) return NotFound();
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
@@ -93,7 +83,7 @@ namespace PawSpital.Controllers
         {
             if (id == null) return NotFound();
 
-            var departament = await _context.Departamente.FirstOrDefaultAsync(m => m.Id == id);
+            var departament = await _service.GetByIdAsync(id.Value);
             if (departament == null) return NotFound();
 
             return View(departament);
@@ -104,18 +94,8 @@ namespace PawSpital.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var departament = await _context.Departamente.FindAsync(id);
-            if (departament != null)
-            {
-                _context.Departamente.Remove(departament);
-                await _context.SaveChangesAsync();
-            }
+            await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool DepartamentExists(int id)
-        {
-            return _context.Departamente.Any(e => e.Id == id);
         }
     }
 }
