@@ -1,7 +1,9 @@
 @model PawSpital.Models.Departament
+@using Microsoft.AspNetCore.Http
 
 @{
     ViewData["Title"] = "Details";
+    var isAdmin = string.Equals(Context.Session.GetString("UserRole"), "Admin", StringComparison.OrdinalIgnoreCase);
 }
 
 <h1>Details</h1>
@@ -25,6 +27,10 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    @if (isAdmin)
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+        <text> | </text>
+    }
     <a asp-action="Index">Back to List</a>
 </div>

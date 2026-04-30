@@ -1,0 +1,16 @@
+@model PawSpital.Models.Sala
+@{
+    ViewData["Title"] = "Șterge Sală";
+}
+<h1>Șterge Sală</h1>
+<p class="text-danger">Confirmi ștergerea?</p>
+<dl class="row">
+    <dt class="col-sm-3">Nume</dt><dd class="col-sm-9">@Model.Nume</dd>
+    <dt class="col-sm-3">Etaj</dt><dd class="col-sm-9">@(Model.Etaj?.ToString() ?? "-")</dd>
+</dl>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-danger" type="submit">Șterge</button>
+    <a asp-action="Index" class="btn btn-secondary">Renunță</a>
+</form>
+

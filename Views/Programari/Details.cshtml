@@ -1,0 +1,17 @@
+@model PawSpital.Models.Programare
+@{
+    ViewData["Title"] = "Detalii Programare";
+}
+<h1>Detalii Programare</h1>
+<dl class="row">
+    <dt class="col-sm-3">Pacient</dt><dd class="col-sm-9">@Model.NumePacient</dd>
+    <dt class="col-sm-3">Telefon</dt><dd class="col-sm-9">@Model.Telefon</dd>
+    <dt class="col-sm-3">Doctor</dt><dd class="col-sm-9">@(Model.Doctor?.Nume ?? "-")</dd>
+    <dt class="col-sm-3">Serviciu</dt><dd class="col-sm-9">@(Model.Serviciu?.Nume ?? "-")</dd>
+    <dt class="col-sm-3">Sală</dt><dd class="col-sm-9">@(Model.Sala?.Nume ?? "-")</dd>
+    <dt class="col-sm-3">Data</dt><dd class="col-sm-9">@Model.Data.ToString("dd.MM.yyyy HH:mm")</dd>
+    <dt class="col-sm-3">Status</dt><dd class="col-sm-9">@Model.Status</dd>
+</dl>
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Înapoi</a>
+

@@ -1,0 +1,17 @@
+@model PawSpital.Models.Programare
+@{
+    ViewData["Title"] = "Șterge Programare";
+}
+<h1>Șterge Programare</h1>
+<p class="text-danger">Confirmi ștergerea programării pentru @Model.NumePacient?</p>
+<dl class="row">
+    <dt class="col-sm-3">Doctor</dt><dd class="col-sm-9">@(Model.Doctor?.Nume ?? "-")</dd>
+    <dt class="col-sm-3">Serviciu</dt><dd class="col-sm-9">@(Model.Serviciu?.Nume ?? "-")</dd>
+    <dt class="col-sm-3">Data</dt><dd class="col-sm-9">@Model.Data.ToString("dd.MM.yyyy HH:mm")</dd>
+</dl>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-danger" type="submit">Șterge</button>
+    <a asp-action="Index" class="btn btn-secondary">Renunță</a>
+</form>
+

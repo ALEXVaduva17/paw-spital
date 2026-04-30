@@ -1,0 +1,35 @@
+@model IEnumerable<PawSpital.Models.Sala>
+@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Săli";
+    var isAdmin = string.Equals(Context.Session.GetString("UserRole"), "Admin", StringComparison.OrdinalIgnoreCase);
+}
+<h1>Listă Săli</h1>
+@if (isAdmin)
+{
+    <p><a asp-action="Create" class="btn btn-primary">Adaugă Sală</a></p>
+}
+<table class="table table-striped">
+    <thead>
+        <tr><th>Nume</th><th>Etaj</th><th>Acțiuni</th></tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nume</td>
+            <td>@(item.Etaj?.ToString() ?? "-")</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Detalii</a> |
+                @if (isAdmin)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <text> | </text>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+

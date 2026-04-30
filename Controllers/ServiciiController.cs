@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PawSpital.Models;
+using PawSpital.Security;
 using PawSpital.Services;
 
 namespace PawSpital.Controllers;
@@ -29,10 +30,12 @@ public class ServiciiController : Controller
         return View(serviciu);
     }
 
+    [RequireRole(AppRoles.Admin)]
     public IActionResult Create() => View();
 
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [RequireRole(AppRoles.Admin)]
     public async Task<IActionResult> Create([Bind("Nume,Pret,Descriere")] Serviciu model)
     {
         if (!ModelState.IsValid)
@@ -42,6 +45,7 @@ public class ServiciiController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    [RequireRole(AppRoles.Admin)]
     public async Task<IActionResult> Edit(int? id)
     {
         if (id is null) return NotFound();
@@ -54,6 +58,7 @@ public class ServiciiController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [RequireRole(AppRoles.Admin)]
     public async Task<IActionResult> Edit(int id, [Bind("Id,Nume,Pret,Descriere")] Serviciu model)
     {
         if (id != model.Id) return NotFound();
@@ -67,6 +72,7 @@ public class ServiciiController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    [RequireRole(AppRoles.Admin)]
     public async Task<IActionResult> Delete(int? id)
     {
         if (id is null) return NotFound();
@@ -79,6 +85,7 @@ public class ServiciiController : Controller
 
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
+    [RequireRole(AppRoles.Admin)]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         await _service.DeleteAsync(id);

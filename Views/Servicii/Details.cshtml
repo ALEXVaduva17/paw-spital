@@ -1,7 +1,9 @@
 @model PawSpital.Models.Serviciu
+@using Microsoft.AspNetCore.Http
 
 @{
     ViewData["Title"] = "Detalii Serviciu";
+    var isAdmin = string.Equals(Context.Session.GetString("UserRole"), "Admin", StringComparison.OrdinalIgnoreCase);
 }
 
 <h1>Detalii Serviciu</h1>
@@ -19,7 +21,10 @@
 </dl>
 
 <div class="mt-3">
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Modifică</a>
+    @if (isAdmin)
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Modifică</a>
+    }
     <a asp-action="Index" class="btn btn-secondary ms-2">Înapoi la listă</a>
 </div>
 

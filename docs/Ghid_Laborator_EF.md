@@ -77,24 +77,44 @@ EF folosește convențiile astea ca să știe singur ce e relație 1-N și unde 
 
 ---
 
-## 4. Testare – controller cu CRUD pe un tabel (1p)
+## 4. Testare – pagini CRUD pe mai multe tabele (cerința extinsă)
 
-### Ce controller
+### Ce pagini CRUD sunt complet implementate
 
-- **`DepartamenteController.cs`** – lucrează cu entitatea **Departament** → tabelul **`Departamente`** din SQLite.
+- **`/Departamente`** (`DepartamenteController`)
+- **`/Doctori`** (`DoctoriController`)
+- **`/Servicii`** (`ServiciiController`)
+- **`/Sali`** (`SaliController`)
+- **`/Programari`** (`ProgramariController`)
 
-### Ce înseamnă CRUD (ce face profesoara când testează)
+Fiecare are paginile **Index / Details / Create / Edit / Delete** și salvează/citește date reale din SQLite.
 
-| Literă | Acțiune | Rută tipică | Ce se întâmplă |
-|--------|---------|-------------|----------------|
-| **C** Create | adăugare | `/Departamente/Create` | formular → `SaveChanges` → INSERT în baza de date |
-| **R** Read | citire | `/Departamente` (listă), `/Departamente/Details/5` (un rând) | SELECT din baza de date |
-| **U** Update | modificare | `/Departamente/Edit/5` | UPDATE în baza de date |
-| **D** Delete | ștergere | `/Departamente/Delete/5` | DELETE din baza de date |
+### Ce înseamnă CRUD (test rapid pe oricare modul)
 
-Controllerul primește **`SpitalContext`** prin constructor (**dependency injection**) – adică ASP.NET îi dă deja conexiunea/contextul gata configurat.
+| Literă | Acțiune | Rută tipică |
+|--------|---------|-------------|
+| **C** Create | adăugare | `/{Entitate}/Create` |
+| **R** Read | citire | `/{Entitate}` + `/{Entitate}/Details/{id}` |
+| **U** Update | modificare | `/{Entitate}/Edit/{id}` |
+| **D** Delete | ștergere | `/{Entitate}/Delete/{id}` |
 
-Paginile sunt în **`Views/Departamente/`** (formulare + liste).
+### Arhitectură corectă (fără acces direct la Context în controllere)
+
+- **Controller → Service → Repository → DbContext**
+- Controllerele folosesc doar servicii (ex: `IDepartamentService`, `IDoctorService`, `IProgramareService`).
+- Serviciile conțin logica de business și folosesc repository-urile.
+- Repository-urile sunt singurele care folosesc `SpitalContext`.
+
+### Validări și formulare
+
+- Input-urile folosesc DataAnnotations (`[Required]`, `[StringLength]`, `[Phone]`, `[Range]`) + validare client/server în Razor.
+- În formularele cu relații (ex: `Programari`, `Doctori`) se folosesc **dropdown-uri cu denumiri** (`Nume` doctor/serviciu/departament/sală), nu ID-uri brute introduse manual.
+
+### Cerința cu minim 7 pagini web (fără Login/Register)
+
+În aplicație există peste 7 pagini prezentabile și funcționale, de exemplu:
+- `Departamente`, `Doctori`, `Servicii`, `Sali`, `Programari` (module CRUD)
+- `Home/Index`, `Home/Contact`, `Home/Despre`, `Home/Profil`, `Home/Privacy`, `Home/Documentatie`
 
 ---
 

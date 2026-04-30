@@ -1,0 +1,48 @@
+@model PawSpital.Models.Programare
+@{
+    ViewData["Title"] = "Adaugă Programare";
+}
+<h1>Adaugă Programare</h1>
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="NumePacient" class="form-label"></label>
+        <input asp-for="NumePacient" class="form-control" />
+        <span asp-validation-for="NumePacient" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Telefon" class="form-label"></label>
+        <input asp-for="Telefon" class="form-control" />
+        <span asp-validation-for="Telefon" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="DoctorId" class="form-label">Doctor</label>
+        <select asp-for="DoctorId" asp-items="ViewBag.DoctorId" class="form-select"></select>
+        <span asp-validation-for="DoctorId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ServiciuId" class="form-label">Serviciu</label>
+        <select asp-for="ServiciuId" asp-items="ViewBag.ServiciuId" class="form-select"></select>
+        <span asp-validation-for="ServiciuId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="SalaId" class="form-label">Sală (opțional)</label>
+        <select asp-for="SalaId" asp-items="ViewBag.SalaId" class="form-select">
+            <option value="">-- fără sală --</option>
+        </select>
+        <span asp-validation-for="SalaId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Data" class="form-label"></label>
+        <input asp-for="Data" class="form-control" type="datetime-local" />
+        <span asp-validation-for="Data" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label"></label>
+        <input asp-for="Status" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Salvează</button>
+    <a asp-action="Index" class="btn btn-secondary">Înapoi</a>
+</form>
+@section Scripts { @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} }
+

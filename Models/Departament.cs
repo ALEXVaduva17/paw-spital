@@ -11,7 +11,7 @@ namespace PawSpital.Models
         
         [Required]
         [StringLength(100)]
-        public string Nume { get; set; }
+        public string Nume { get; set; } = string.Empty;
         
         public string? Descriere { get; set; }
         

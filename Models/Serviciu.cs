@@ -11,11 +11,11 @@ namespace PawSpital.Models
         
         [Required]
         [StringLength(100)]
-        public string Nume { get; set; }
+        public string Nume { get; set; } = string.Empty;
         
         [Required]
         public decimal Pret { get; set; }
         
-        public string Descriere { get; set; }
+        public string? Descriere { get; set; }
     }
 }

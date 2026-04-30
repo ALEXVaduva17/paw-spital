@@ -10,7 +10,7 @@ namespace PawSpital.Models
 
         [Required]
         [StringLength(80)]
-        public string Nume { get; set; }
+        public string Nume { get; set; } = string.Empty;
 
         public int? Etaj { get; set; }
 

@@ -1,0 +1,22 @@
+@model PawSpital.Models.Sala
+@{
+    ViewData["Title"] = "Adaugă Sală";
+}
+<h1>Adaugă Sală</h1>
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="Nume" class="form-label"></label>
+        <input asp-for="Nume" class="form-control" />
+        <span asp-validation-for="Nume" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Etaj" class="form-label"></label>
+        <input asp-for="Etaj" class="form-control" />
+        <span asp-validation-for="Etaj" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Salvează</button>
+    <a asp-action="Index" class="btn btn-secondary">Înapoi</a>
+</form>
+@section Scripts { @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} }
+

@@ -1,0 +1,26 @@
+@model PawSpital.Models.HomeDashboardViewModel
+@{
+    ViewData["Title"] = "Administrare";
+}
+
+<h1>Panou Administrare</h1>
+<p class="text-muted">Zona internă pentru gestionarea datelor medicale.</p>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4"><div class="card border-primary"><div class="card-body"><h5 class="text-primary">Departamente</h5><p class="display-6">@Model.DepartamenteCount</p></div></div></div>
+    <div class="col-md-4"><div class="card border-success"><div class="card-body"><h5 class="text-success">Doctori</h5><p class="display-6">@Model.DoctoriCount</p></div></div></div>
+    <div class="col-md-4"><div class="card border-info"><div class="card-body"><h5 class="text-info">Servicii</h5><p class="display-6">@Model.ServiciiCount</p></div></div></div>
+    <div class="col-md-4"><div class="card border-warning"><div class="card-body"><h5 class="text-warning">Săli</h5><p class="display-6">@Model.SaliCount</p></div></div></div>
+    <div class="col-md-4"><div class="card border-danger"><div class="card-body"><h5 class="text-danger">Programări</h5><p class="display-6">@Model.ProgramariCount</p></div></div></div>
+</div>
+
+<hr class="my-4" />
+
+<h4>Gestionare Module</h4>
+<div class="d-flex flex-wrap gap-2 mt-3">
+    <a class="btn btn-primary" asp-controller="Departamente" asp-action="Index">Gestionare Departamente</a>
+    <a class="btn btn-primary" asp-controller="Doctori" asp-action="Index">Gestionare Doctori</a>
+    <a class="btn btn-primary" asp-controller="Servicii" asp-action="Index">Gestionare Servicii</a>
+    <a class="btn btn-primary" asp-controller="Sali" asp-action="Index">Gestionare Săli</a>
+    <a class="btn btn-primary" asp-controller="Programari" asp-action="Index">Gestionare Programări</a>
+</div>

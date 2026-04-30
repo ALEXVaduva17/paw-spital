@@ -10,17 +10,17 @@ namespace PawSpital.Models
         
         [Required]
         [StringLength(100)]
-        public string NumePacient { get; set; }
+        public string NumePacient { get; set; } = string.Empty;
         
         [Required]
         [Phone]
-        public string Telefon { get; set; }
+        public string Telefon { get; set; } = string.Empty;
         
         public int DoctorId { get; set; }
-        public Doctor Doctor { get; set; }
+        public Doctor? Doctor { get; set; }
         
         public int ServiciuId { get; set; }
-        public Serviciu Serviciu { get; set; }
+        public Serviciu? Serviciu { get; set; }
 
         public int? SalaId { get; set; }
         public Sala? Sala { get; set; }
