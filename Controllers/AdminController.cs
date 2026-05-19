@@ -1,11 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PawSpital.Models;
-using PawSpital.Security;
 using PawSpital.Services;
 
 namespace PawSpital.Controllers;
 
-[RequireRole(AppRoles.Admin)]
+[Authorize(Roles = "Admin")]
 public class AdminController : Controller
 {
     private readonly IDepartamentService _departamentService;

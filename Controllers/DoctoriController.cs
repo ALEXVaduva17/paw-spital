@@ -1,7 +1,7 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PawSpital.Models;
-using PawSpital.Security;
 using PawSpital.Services;
 
 namespace PawSpital.Controllers;
@@ -33,7 +33,7 @@ public class DoctoriController : Controller
         return View(doctor);
     }
 
-    [RequireRole(AppRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create()
     {
         await PopulateDepartamenteAsync();
@@ -42,7 +42,7 @@ public class DoctoriController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    [RequireRole(AppRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create([Bind("Nume,Specializare,DepartamentId")] Doctor model)
     {
         if (!ModelState.IsValid)
@@ -55,7 +55,7 @@ public class DoctoriController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    [RequireRole(AppRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Edit(int? id)
     {
         if (id is null) return NotFound();
@@ -69,7 +69,7 @@ public class DoctoriController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    [RequireRole(AppRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Edit(int id, [Bind("Id,Nume,Specializare,DepartamentId")] Doctor model)
     {
         if (id != model.Id) return NotFound();
@@ -86,7 +86,7 @@ public class DoctoriController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    [RequireRole(AppRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int? id)
     {
         if (id is null) return NotFound();
@@ -99,7 +99,7 @@ public class DoctoriController : Controller
 
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    [RequireRole(AppRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         await _doctorService.DeleteAsync(id);

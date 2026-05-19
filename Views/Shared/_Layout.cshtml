@@ -1,22 +1,25 @@
-@using Microsoft.AspNetCore.Http
+@using System.Security.Claims
 @{
-    var userName = Context.Session.GetString("UserFullName");
-    var userRole = Context.Session.GetString("UserRole");
-    var isLoggedIn = !string.IsNullOrWhiteSpace(userName);
-    var isAdmin = string.Equals(userRole, "Admin", StringComparison.OrdinalIgnoreCase);
+    var isLoggedIn = User.Identity?.IsAuthenticated == true;
+    var userName = User.FindFirst("FullName")?.Value ?? User.Identity?.Name;
+    var isAdmin = User.IsInRole("Admin");
+    var profileImage = User.FindFirst("ProfileImagePath")?.Value;
+    var hasProfileImage = !string.IsNullOrEmpty(profileImage);
+    var userRole = isAdmin ? "Admin" : "Pacient";
 }
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SanaMed</title>
     <script type="importmap"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/PawSpital.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body style="font-family: 'Inter', sans-serif;">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -38,25 +41,35 @@
                         <li class="nav-item"><a class="nav-link text-dark" asp-controller="Home" asp-action="Despre">Despre</a></li>
                         @if (isAdmin)
                         {
-                            <li class="nav-item"><a class="nav-link text-danger" asp-controller="Admin" asp-action="Index">Administrare</a></li>
+                            <li class="nav-item d-flex align-items-center ms-1">
+                                <a class="nav-link btn-admin-nav" asp-controller="Admin" asp-action="Index">Administrare</a>
+                            </li>
                         }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav align-items-center">
                         @if (isLoggedIn)
                         {
                             <li class="nav-item">
-                                <span class="nav-link text-dark">Salut, @userName (@userRole)</span>
+                                <a class="nav-link text-dark nav-user-info" asp-controller="Home" asp-action="Profil" title="Profil">
+                                    @if (hasProfileImage)
+                                    {
+                                        <img src="@profileImage" alt="@userName" class="nav-avatar" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/images/default-avatar.svg" alt="Avatar" class="nav-avatar" />
+                                    }
+                                    <span>@userName</span>
+                                    <span class="nav-role-badge @(isAdmin ? "admin" : "pacient")">@userRole</span>
+                                </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Profil">Profil</a>
-                            </li>
-                            <li class="nav-item">
+                            <li class="nav-item ms-2">
                                 <form asp-controller="Home" asp-action="Logout" method="post" class="d-inline">
                                     @Html.AntiForgeryToken()
-                                    <button type="submit" class="btn btn-link nav-link text-dark p-0">Logout</button>
+                                    <button type="submit" class="btn-logout">Logout</button>
                                 </form>
                             </li>
                         }

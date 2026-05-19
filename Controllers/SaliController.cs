@@ -1,6 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PawSpital.Models;
-using PawSpital.Security;
 using PawSpital.Services;
 
 namespace PawSpital.Controllers;
@@ -30,12 +30,12 @@ public class SaliController : Controller
         return View(sala);
     }
 
-    [RequireRole(AppRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public IActionResult Create() => View();
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    [RequireRole(AppRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create([Bind("Nume,Etaj")] Sala model)
     {
         if (!ModelState.IsValid)
@@ -45,7 +45,7 @@ public class SaliController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    [RequireRole(AppRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Edit(int? id)
     {
         if (id is null) return NotFound();
@@ -58,7 +58,7 @@ public class SaliController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    [RequireRole(AppRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Edit(int id, [Bind("Id,Nume,Etaj")] Sala model)
     {
         if (id != model.Id) return NotFound();
@@ -72,7 +72,7 @@ public class SaliController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    [RequireRole(AppRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int? id)
     {
         if (id is null) return NotFound();
@@ -85,7 +85,7 @@ public class SaliController : Controller
 
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    [RequireRole(AppRoles.Admin)]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         await _service.DeleteAsync(id);

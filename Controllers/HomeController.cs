@@ -1,9 +1,9 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PawSpital.Models;
 using PawSpital.Models.Auth;
-using PawSpital.Security;
 using PawSpital.Services;
 
 namespace PawSpital.Controllers;
@@ -33,11 +33,7 @@ public class HomeController : Controller
         _authService = authService;
     }
 
-    public IActionResult Index()
-    {
-        return View("index");
-    }
-
+    public IActionResult Index() => View("index");
     public IActionResult Contact() => View("contact");
     public async Task<IActionResult> Departamente()
     {
@@ -51,39 +47,59 @@ public class HomeController : Controller
         return View("doctori", model);
     }
     public IActionResult Documentatie() => View("documentatie-aplicatie");
-    public IActionResult Login() => View("login", new LoginViewModel());
+
+    public IActionResult Login()
+    {
+        if (User.Identity?.IsAuthenticated == true)
+            return RedirectToAction(nameof(Profil));
+        return View("login", new LoginViewModel());
+    }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Login(LoginViewModel model)
+    public async Task<IActionResult> Login(LoginViewModel model)
     {
         if (!ModelState.IsValid)
             return View("login", model);
 
-        if (!_authService.ValidateCredentials(model.Email, model.Password, out var fullName, out var role))
+        var result = await _authService.LoginAsync(model.Email, model.Password);
+        if (!result.Success)
         {
-            ModelState.AddModelError(string.Empty, "Email sau parolă invalidă.");
+            ModelState.AddModelError(string.Empty, result.Error);
             return View("login", model);
         }
 
-        HttpContext.Session.SetString("UserEmail", model.Email.Trim().ToLowerInvariant());
-        HttpContext.Session.SetString("UserFullName", fullName);
-        HttpContext.Session.SetString("UserRole", role);
         return RedirectToAction(nameof(Profil));
     }
 
-    public IActionResult Profil()
+    [Authorize]
+    public async Task<IActionResult> Profil()
     {
-        var email = HttpContext.Session.GetString("UserEmail");
-        var fullName = HttpContext.Session.GetString("UserFullName");
-        var role = HttpContext.Session.GetString("UserRole");
-        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(fullName) || string.IsNullOrWhiteSpace(role))
+        var user = await _authService.GetCurrentUserAsync(User);
+        if (user == null)
             return RedirectToAction(nameof(Login));
 
-        ViewData["ProfileEmail"] = email;
-        ViewData["ProfileName"] = fullName;
-        ViewData["ProfileRole"] = role;
+        var roles = await _authService.GetUserRolesAsync(User);
+
+        ViewData["ProfileEmail"] = user.Email;
+        ViewData["ProfileName"] = user.FullName;
+        ViewData["ProfileRole"] = string.Join(", ", roles);
+        ViewData["ProfileImage"] = user.ProfileImagePath;
         return View("profil");
+    }
+
+    [Authorize]
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> UpdateProfileImage(IFormFile profileImage)
+    {
+        var result = await _authService.UpdateProfileImageAsync(User, profileImage);
+        if (!result.Success)
+            TempData["ErrorMessage"] = result.Error;
+        else
+            TempData["SuccessMessage"] = "Imaginea de profil a fost actualizată cu succes!";
+
+        return RedirectToAction(nameof(Profil));
     }
 
     public async Task<IActionResult> Programari()
@@ -117,33 +133,37 @@ public class HomeController : Controller
         return RedirectToAction(nameof(Programari));
     }
 
-    public IActionResult Register() => View("register", new RegisterViewModel());
+    public IActionResult Register()
+    {
+        if (User.Identity?.IsAuthenticated == true)
+            return RedirectToAction(nameof(Profil));
+        return View("register", new RegisterViewModel());
+    }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Register(RegisterViewModel model)
+    public async Task<IActionResult> Register(RegisterViewModel model)
     {
         if (!ModelState.IsValid)
             return View("register", model);
 
-        var result = _authService.Register(model.FullName, model.Email, model.Password);
+        var result = await _authService.RegisterAsync(model.FullName, model.Email, model.Password);
         if (!result.Success)
         {
             ModelState.AddModelError(string.Empty, result.Error);
             return View("register", model);
         }
 
-        HttpContext.Session.SetString("UserEmail", model.Email.Trim().ToLowerInvariant());
-        HttpContext.Session.SetString("UserFullName", model.FullName.Trim());
-        HttpContext.Session.SetString("UserRole", AppRoles.Pacient);
+        // Auto-login after registration
+        await _authService.LoginAsync(model.Email, model.Password);
         return RedirectToAction(nameof(Profil));
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Logout()
+    public async Task<IActionResult> Logout()
     {
-        HttpContext.Session.Clear();
+        await _authService.LogoutAsync();
         return RedirectToAction(nameof(Index));
     }
 
@@ -152,6 +172,9 @@ public class HomeController : Controller
         var model = await _serviciuService.GetAllAsync();
         return View("servicii", model);
     }
+
+    public IActionResult AccessDenied() => View("AccessDenied");
+
     public IActionResult Privacy() => View();
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

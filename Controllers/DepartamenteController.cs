@@ -1,6 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PawSpital.Models;
-using PawSpital.Security;
 using PawSpital.Services;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,7 +34,7 @@ namespace PawSpital.Controllers
         }
 
         // GET: CREATE (Form for new record)
-        [RequireRole(AppRoles.Admin)]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -43,7 +43,7 @@ namespace PawSpital.Controllers
         // POST: CREATE (Save to DB)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [RequireRole(AppRoles.Admin)]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Nume,Descriere")] Departament model)
         {
             if (ModelState.IsValid)
@@ -55,7 +55,7 @@ namespace PawSpital.Controllers
         }
 
         // GET: UPDATE (Form to edit a record)
-        [RequireRole(AppRoles.Admin)]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -69,7 +69,7 @@ namespace PawSpital.Controllers
         // POST: UPDATE (Save changes to DB)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [RequireRole(AppRoles.Admin)]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nume,Descriere")] Departament model)
         {
             if (id != model.Id) return NotFound();
@@ -84,7 +84,7 @@ namespace PawSpital.Controllers
         }
 
         // GET: DELETE (Confirm deletion)
-        [RequireRole(AppRoles.Admin)]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -98,7 +98,7 @@ namespace PawSpital.Controllers
         // POST: DELETE (Execute deletion from DB)
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [RequireRole(AppRoles.Admin)]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _service.DeleteAsync(id);

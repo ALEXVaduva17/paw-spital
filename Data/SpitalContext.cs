@@ -1,10 +1,11 @@
 using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PawSpital.Models;
 
 namespace PawSpital.Data
 {
-    public class SpitalContext : DbContext
+    public class SpitalContext : IdentityDbContext<ApplicationUser>
     {
         public SpitalContext(DbContextOptions<SpitalContext> options)
             : base(options)

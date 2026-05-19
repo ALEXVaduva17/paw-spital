@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Acces interzis";
+}
+
+<div class="access-denied-page">
+    <div class="access-denied-content">
+        <div class="access-denied-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+            </svg>
+        </div>
+        <h1>Acces interzis</h1>
+        <p>Nu ai permisiunile necesare pentru a accesa această pagină. Contactează administratorul dacă crezi că este o eroare.</p>
+        <a asp-action="Index" asp-controller="Home" class="btn-back-home">Înapoi la pagina principală</a>
+    </div>
+</div>

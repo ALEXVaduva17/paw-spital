@@ -1,17 +1,93 @@
 @{
     ViewData["Title"] = "Profil";
+    var profileName = ViewData["ProfileName"]?.ToString();
+    var profileEmail = ViewData["ProfileEmail"]?.ToString();
+    var profileRole = ViewData["ProfileRole"]?.ToString();
+    var profileImage = ViewData["ProfileImage"]?.ToString();
+    var hasImage = !string.IsNullOrEmpty(profileImage);
+    var roleCss = profileRole?.Contains("Admin") == true ? "admin" : "pacient";
 }
 
-<h1>Profil utilizator</h1>
-<p class="text-muted">Datele contului autentificat în sesiunea curentă.</p>
+<div class="profile-page">
+    <div class="profile-header">
+        <h1>Profil utilizator</h1>
+        <p>Gestionează informațiile contului tău</p>
+    </div>
 
-<div class="card" style="max-width: 460px;">
-    <div class="card-body">
-        <h5 class="card-title">Date personale</h5>
-        <p class="card-text"><strong>Nume:</strong> @ViewData["ProfileName"]</p>
-        <p class="card-text"><strong>Email:</strong> @ViewData["ProfileEmail"]</p>
-        <p class="card-text"><strong>Rol:</strong> @ViewData["ProfileRole"]</p>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert-toast success text-center" style="max-width:500px; margin:0 auto 1.5rem;">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert-toast error text-center" style="max-width:500px; margin:0 auto 1.5rem;">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div class="text-center">
+        <div class="profile-avatar-wrapper">
+            @if (hasImage)
+            {
+                <img src="@profileImage" alt="@profileName" class="profile-avatar" id="profile-avatar-img" />
+            }
+            else
+            {
+                <img src="~/images/default-avatar.svg" alt="Avatar implicit" class="profile-avatar" id="profile-avatar-img" />
+            }
+
+            <form asp-action="UpdateProfileImage" asp-controller="Home" method="post" enctype="multipart/form-data" id="avatar-form">
+                <label class="profile-avatar-upload-btn" title="Schimbă imaginea de profil" for="profileImageInput">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                    <input type="file" name="profileImage" accept="image/*" id="profileImageInput"
+                           onchange="document.getElementById('avatar-form').submit();" style="display:none;" />
+                </label>
+            </form>
+        </div>
+    </div>
+
+    <div class="profile-info-card">
+        <div class="profile-info-item">
+            <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+            </div>
+            <div class="info-content">
+                <label>Nume complet</label>
+                <span>@profileName</span>
+            </div>
+        </div>
+
+        <div class="profile-info-item">
+            <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+            </div>
+            <div class="info-content">
+                <label>Email</label>
+                <span>@profileEmail</span>
+            </div>
+        </div>
+
+        <div class="profile-info-item">
+            <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+            </div>
+            <div class="info-content">
+                <label>Rol</label>
+                <span class="role-badge @roleCss">@profileRole</span>
+            </div>
+        </div>
     </div>
 </div>
-
-

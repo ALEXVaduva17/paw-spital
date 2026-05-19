@@ -1,8 +1,14 @@
+using System.Security.Claims;
+using PawSpital.Models;
+
 namespace PawSpital.Services;
 
 public interface IAuthService
 {
-    (bool Success, string Error) Register(string fullName, string email, string password);
-    bool ValidateCredentials(string email, string password, out string fullName, out string role);
+    Task<(bool Success, string Error)> RegisterAsync(string fullName, string email, string password);
+    Task<(bool Success, string Error)> LoginAsync(string email, string password);
+    Task LogoutAsync();
+    Task<ApplicationUser?> GetCurrentUserAsync(ClaimsPrincipal principal);
+    Task<IList<string>> GetUserRolesAsync(ClaimsPrincipal principal);
+    Task<(bool Success, string Error)> UpdateProfileImageAsync(ClaimsPrincipal principal, IFormFile image);
 }
-
