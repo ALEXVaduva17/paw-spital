@@ -10,6 +10,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 var dbPath = Path.Combine(builder.Environment.ContentRootPath, "PawSpital.db");
 builder.Services.AddDbContext<SpitalContext>(options =>
     options.UseSqlite($"Data Source={dbPath}"));
@@ -82,6 +89,21 @@ using (var scope = app.Services.CreateScope())
         await userManager.CreateAsync(adminUser, "Admin123!");
         await userManager.AddToRoleAsync(adminUser, AppRoles.Admin);
     }
+
+    var userEmail = "user@sanamed.ro";
+    var normalUser = await userManager.FindByEmailAsync(userEmail);
+    if (normalUser == null)
+    {
+        normalUser = new ApplicationUser
+        {
+            UserName = userEmail,
+            Email = userEmail,
+            FullName = "Pacient SanaMed",
+            EmailConfirmed = true
+        };
+        await userManager.CreateAsync(normalUser, "User123!");
+        await userManager.AddToRoleAsync(normalUser, AppRoles.Pacient);
+    }
 }
 
 if (!app.Environment.IsDevelopment())
@@ -91,7 +113,9 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseRouting();
+app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapStaticAssets();

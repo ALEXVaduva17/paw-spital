@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{458B668D-407E-467F-896F-A5C567F3E969}|PawSpital.csproj|c:\\users\\max\\documents\\projects\\proiecte\\paw-spital\\models\\departament.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{458B668D-407E-467F-896F-A5C567F3E969}|PawSpital.csproj|solutionrelative:models\\departament.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{458B668D-407E-467F-896F-A5C567F3E969}|PawSpital.csproj|c:\\users\\max\\documents\\projects\\proiecte\\paw-spital\\models\\recenzie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{458B668D-407E-467F-896F-A5C567F3E969}|PawSpital.csproj|solutionrelative:models\\recenzie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{458B668D-407E-467F-896F-A5C567F3E969}|PawSpital.csproj|c:\\users\\max\\documents\\projects\\proiecte\\paw-spital\\docs\\diagrama-model-relational.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
       "RelativeMoniker": "D:0:0:{458B668D-407E-467F-896F-A5C567F3E969}|PawSpital.csproj|solutionrelative:docs\\diagrama-model-relational.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
     },
@@ -14,16 +22,8 @@
       "RelativeMoniker": "D:0:0:{458B668D-407E-467F-896F-A5C567F3E969}|PawSpital.csproj|solutionrelative:models\\programare.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{458B668D-407E-467F-896F-A5C567F3E969}|PawSpital.csproj|c:\\users\\max\\documents\\projects\\proiecte\\paw-spital\\models\\recenzie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{458B668D-407E-467F-896F-A5C567F3E969}|PawSpital.csproj|solutionrelative:models\\recenzie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{458B668D-407E-467F-896F-A5C567F3E969}|PawSpital.csproj|c:\\users\\max\\documents\\projects\\proiecte\\paw-spital\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{458B668D-407E-467F-896F-A5C567F3E969}|PawSpital.csproj|solutionrelative:models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{458B668D-407E-467F-896F-A5C567F3E969}|PawSpital.csproj|c:\\users\\max\\documents\\projects\\proiecte\\paw-spital\\models\\departament.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{458B668D-407E-467F-896F-A5C567F3E969}|PawSpital.csproj|solutionrelative:models\\departament.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,7 +33,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -44,20 +44,12 @@
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "diagrama-model-relational.png",
-              "DocumentMoniker": "C:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\docs\\diagrama-model-relational.png",
-              "RelativeDocumentMoniker": "docs\\diagrama-model-relational.png",
-              "ToolTip": "C:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\docs\\diagrama-model-relational.png",
-              "RelativeToolTip": "docs\\diagrama-model-relational.png",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2026-04-01T20:55:47.797Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
@@ -65,12 +57,11 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "ViewState": "AgIAAP8UAAAAAAAAAAAjwAwVAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2026-04-01T20:22:45.139Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-01T20:22:45.139Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Programare.cs",
               "DocumentMoniker": "C:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Models\\Programare.cs",
               "RelativeDocumentMoniker": "Models\\Programare.cs",
@@ -82,7 +73,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Recenzie.cs",
               "DocumentMoniker": "C:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Models\\Recenzie.cs",
               "RelativeDocumentMoniker": "Models\\Recenzie.cs",
@@ -94,7 +85,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ErrorViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Models\\ErrorViewModel.cs",
               "RelativeDocumentMoniker": "Models\\ErrorViewModel.cs",
@@ -106,15 +97,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "Departament.cs",
               "DocumentMoniker": "C:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Models\\Departament.cs",
               "RelativeDocumentMoniker": "Models\\Departament.cs",
               "ToolTip": "C:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\Models\\Departament.cs",
               "RelativeToolTip": "Models\\Departament.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-01T20:20:59.545Z"
+              "WhenOpened": "2026-04-01T20:20:59.545Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "diagrama-model-relational.png",
+              "DocumentMoniker": "C:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\docs\\diagrama-model-relational.png",
+              "RelativeDocumentMoniker": "docs\\diagrama-model-relational.png",
+              "ToolTip": "C:\\Users\\Max\\Documents\\Projects\\Proiecte\\paw-spital\\docs\\diagrama-model-relational.png",
+              "RelativeToolTip": "docs\\diagrama-model-relational.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-04-01T20:55:47.797Z"
             }
           ]
         }
